@@ -1,0 +1,137 @@
+---
+pagetitle: "Experience Pays, But Not Equally"
+output:
+  html_document:
+    theme: null
+    highlight: null
+    mathjax: null
+    css: report.css
+    includes:
+      after_body: report_scroll.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(dplyr)
+library(ggplot2)
+library(ggridges)
+df <- readRDS("../data/test4_dataset.rds")
+```
+
+<div class="report-wrap">
+
+<header class="report-header fade-in">
+<p class="report-kicker">Data Analysis · MBAA 531</p>
+<h1 class="report-headline">Experience Pays, But Not Equally</h1>
+<p class="report-deck">Salary rises with experience in the talent market, but education level explains surprisingly little of who earns more.</p>
+<p class="report-byline">By Kaur Navdeep · Dataset: Talent Market Compensation Survey</p>
+</header>
+
+<section class="report-section fade-in">
+<h2>The Data</h2>
+
+This analysis draws on the Talent Market Compensation Survey, a dataset of 23,876 workers across 12 roles and 10 industries. Each row represents one individual respondent, capturing their annual salary in USD, years of experience, education level, number of skills, industry, company size, country, remote-work status, and certifications.
+
+The dataset spans five education tiers from High School to PhD, and ten industries including Finance, Technology, Healthcare, and Retail. Salaries range from around $41,000 to $328,000, with a median of $143,132. The diversity of roles and industries makes this dataset well suited for exploring what actually predicts compensation in today's talent market.
+
+One column, experience_band, was absent from the raw CSV and was recreated by grouping experience_yrs into four career stages: Junior (0–3 years), Mid (4–9), Senior (10–15), and Principal (16–20). The education column was also converted from plain text to an ordered factor to preserve the credential hierarchy in analysis.
+
+</section>
+
+<section class="report-section fade-in">
+<h2>The Central Finding</h2>
+
+To move beyond raw salary, this analysis created a derived variable called salary_per_exp_yr — calculated as salary_usd divided by experience_yrs plus one. Adding one to the denominator prevents division by zero for respondents with no experience. This variable measures earnings efficiency: how many dollars of annual salary a worker commands per year of career experience.
+
+<div class="pull-stat fade-in">
+  <span class="stat-number">$13,403</span>
+  <span class="stat-label">
+    Median dollars earned per year of experience — the typical worker's earnings efficiency in this talent market.
+  </span>
+</div>
+
+A median of $13,403 per year of experience means a typical worker earns roughly $13,400 in annual salary for each year of career experience they bring to a role. This number compresses both salary and seniority into a single measure, making it easier to compare workers across different career stages. A higher value means the market is rewarding experience more generously; a lower value suggests experience alone is not the main driver of pay.
+
+</section>
+
+<section class="report-section fade-in">
+<h2>A Closer Look</h2>
+
+If experience drives salary, we would expect a clear upward trend in a scatter plot of the two variables — workers with more years in the field earning progressively more. The chart below tests that expectation across all 23,876 respondents.
+
+```{r scatter}
+ggplot(df, aes(x = experience_yrs, y = salary_usd)) +
+  geom_point(
+    alpha  = 0.35,
+    size   = 1.4,
+    colour = "#c0392b"
+  ) +
+  labs(title = NULL, x = NULL, y = NULL) +
+  theme_minimal(base_size = 12) +
+  theme(
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(colour = "#eeeeee"),
+    axis.text = element_text(colour = "#555")
+  )
+```
+
+<p class="chart-caption">Chart 1: Salary (USD) plotted against years of experience for 23,876 respondents. Each point is one worker.</p>
+
+The upward trend is visible but the spread is wide — workers at every experience level show a broad range of salaries. This tells us experience is one ingredient in compensation, but far from the only one.
+
+</section>
+
+<section class="report-section fade-in">
+<h2>Across Groups</h2>
+
+Education level is widely assumed to sort workers into distinct salary bands. A PhD or Master's degree is expected to command a premium over a High School diploma or Diploma credential. The ridge chart below shows the full salary distribution for each of the five education tiers, making it easy to see whether the peaks actually shift as credentials increase.
+
+```{r ridge}
+df <- df |>
+  mutate(
+    education = factor(
+      education,
+      levels  = c("High School", "Diploma", "Bachelor", "Master", "PhD"),
+      ordered = TRUE
+    )
+  )
+
+ggplot(
+  df,
+  aes(x = salary_usd, y = education, fill = education)
+) +
+  geom_density_ridges(alpha = 0.6) +
+  labs(title = NULL, x = NULL, y = NULL) +
+  theme_minimal(base_size = 12) +
+  theme(
+    legend.position    = "none",
+    panel.grid.minor   = element_blank(),
+    panel.grid.major.y = element_blank(),
+    panel.grid.major.x = element_line(colour = "#eeeeee"),
+    axis.text = element_text(colour = "#555")
+  )
+```
+
+<p class="chart-caption">Chart 2: Salary distribution by education level. Each ridge shows the density of salaries for one credential tier.</p>
+
+The five ridges sit at nearly identical positions along the salary axis. PhD and Master peaks reach around $145,000–$150,000, while High School and Diploma peaks are only slightly behind at $135,000–$140,000. Education level alone explains very little of the salary variation in this dataset — experience, role, and industry likely matter more.
+
+</section>
+
+<section class="report-section fade-in">
+<h2>What This Means</h2>
+
+The headline claim holds up: experience pays, but not equally, and the credential you hold matters less than many workers assume. The scatter chart shows a genuine upward trend between experience and salary, confirming that time in the field does translate into higher pay on average. But the wide spread at every experience level means two workers with identical tenure can earn vastly different salaries depending on their role, industry, or other factors the data does not fully capture.
+
+The ridge chart makes the education finding concrete. Across five credential tiers spanning High School to PhD, the salary distributions overlap so heavily that knowing a worker's education level tells you almost nothing about where their salary will land. The credential premium that shapes so many career decisions appears weak in this dataset.
+
+For a decision-maker in talent acquisition or workforce planning, these two findings together suggest that years of experience is a more reliable signal of compensation than education level. Salary benchmarking built primarily around credential tiers may be missing the variable that actually predicts pay. What the data leaves unanswered is why the education premium is so muted — whether that reflects the industries sampled, the roles included, or a genuine shift in how the market values credentials.
+
+</section>
+
+<footer class="report-footer fade-in">
+Published via GitHub Pages · MBAA 531 Data Analytics · Vancouver Island University<br>
+Source: <a href="https://github.com/navi96-beep/mbaa531-report">github.com/navi96-beep/mbaa531-report</a>
+</footer>
+
+</div>

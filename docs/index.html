@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Your Headline Here</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+
+
+
+
+
+
+
+<style type="text/css">
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+body {
+background: #faf9f7;
+color: #1a1a1a;
+font-family: Georgia, 'Times New Roman', serif;
+font-size: 1.125rem;
+line-height: 1.75;
+}
+
+.report-wrap {
+max-width: 800px;
+width: 100%;
+margin: 0 auto;
+padding: 0 1.5rem 6rem;
+}
+
+@media (max-width: 600px) {
+.report-wrap {
+padding: 0 1rem 4rem;
+}
+.report-headline {
+font-size: 1.9rem;
+}
+}
+
+.report-header {
+padding: 5rem 0 3rem;
+border-bottom: 3px solid #1a1a1a;
+margin-bottom: 3rem;
+}
+.report-kicker {
+font-family: 'Helvetica Neue', Arial, sans-serif;
+font-size: 0.75rem;
+font-weight: 700;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+color: #c0392b;
+margin-bottom: 1rem;
+}
+.report-headline {
+font-size: 2.6rem;
+font-weight: 700;
+line-height: 1.15;
+margin-bottom: 1.25rem;
+letter-spacing: -0.02em;
+}
+.report-deck {
+font-size: 1.2rem;
+line-height: 1.55;
+color: #444;
+margin-bottom: 1.75rem;
+}
+.report-byline {
+font-family: 'Helvetica Neue', Arial, sans-serif;
+font-size: 0.8rem;
+color: #666;
+letter-spacing: 0.04em;
+}
+.report-byline strong {
+color: #1a1a1a;
+}
+
+
+.report-section {
+margin-bottom: 8rem;
+padding-top: 2rem;
+}
+
+.report-section h2 {
+font-family: 'Helvetica Neue', Arial, sans-serif;
+font-size: 0.7rem;
+font-weight: 700;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: #c0392b;
+margin-bottom: 1.5rem;
+}
+.report-section p {
+margin-bottom: 2rem;
+}
+
+.pull-stat {
+border-left: 4px solid #c0392b;
+padding: 1rem 1.5rem;
+margin: 2rem 0;
+background: #fff;
+}
+.pull-stat .stat-number {
+font-size: 3rem;
+font-weight: 700;
+line-height: 1;
+letter-spacing: -0.03em;
+color: #c0392b;
+display: block;
+margin-bottom: 0.25rem;
+}
+.pull-stat .stat-label {
+font-family: 'Helvetica Neue', Arial, sans-serif;
+font-size: 0.85rem;
+color: #555;
+line-height: 1.4;
+}
+
+.chart-wrap {
+margin: 2rem 0 0.5rem;
+background: #fff;
+padding: 1.25rem 1.25rem 0.75rem;
+border-top: 2px solid #1a1a1a;
+}
+
+.chart-wrap img {
+width: 100%;
+height: auto;
+display: block;
+}
+.chart-caption {
+font-family: 'Helvetica Neue', Arial, sans-serif;
+font-size: 0.75rem;
+color: #777;
+margin-top: 0.5rem;
+line-height: 1.4;
+}
+
+.report-footer {
+border-top: 1px solid #ddd;
+padding-top: 2rem;
+margin-top: 5rem;
+font-family: 'Helvetica Neue', Arial, sans-serif;
+font-size: 0.78rem;
+color: #888;
+line-height: 1.6;
+}
+.report-footer a {
+color: #555;
+}
+
+.fade-in {
+opacity: 0;
+transform: translateY(24px);
+transition:
+opacity 0.65s ease,
+transform 0.65s ease;
+}
+.fade-in.visible {
+opacity: 1;
+transform: translateY(0);
+}
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+<div class="report-wrap">
+<!-- ── HEADER ──────────────────────────────────── -->
+<!-- Edit the kicker, headline, deck, and byline.  -->
+<!-- Do not change the class names or HTML tags.   -->
+<header class="report-header fade-in">
+<p class="report-kicker">
+Data Analysis · MBAA 531
+</p>
+<h1 class="report-headline">
+Your headline goes here
+</h1>
+<p class="report-deck">
+A one or two sentence summary of your argument. What does your data
+reveal? Write this last, once you know what the piece says.
+</p>
+<p class="report-byline">
+By <strong>Your Name</strong> · Dataset: Your Dataset Name
+</p>
+</header>
+<!-- ── SECTION 1: THE DATA ─────────────────────── -->
+<div id="the-data" class="section level2 report-section fade-in">
+<h2>The Data</h2>
+<p>Write two or three paragraphs here introducing your dataset. Draw
+from your Test 2 Section 1 write-up. Answer: what does this dataset
+measure, how many observations does it have, and why does it matter?
+Write for a reader who has never seen the data.</p>
+</div>
+<!-- ── SECTION 2: THE CENTRAL FINDING ─────────── -->
+<div id="the-central-finding" class="section level2 report-section fade-in">
+<h2>The Central Finding</h2>
+<p>Introduce the derived variable you created in Test 2 Section 4.
+Explain what it measures and why it matters. Then the pull stat block
+below presents the summary statistic at a glance.</p>
+<!-- Edit the number and label text only.          -->
+<!-- Do not change the class names or HTML tags.   -->
+<div class="pull-stat fade-in">
+<p><span class="stat-number">0.00</span> <span class="stat-label">
+Replace with your statistic and a one-line explanation of what it means
+in plain language. </span></p>
+</div>
+<p>Continue the narrative here. What does this number reveal? Name the
+variable, the unit of measurement, and what a high or low value means in
+context.</p>
+</div>
+<!-- ── SECTION 3: SCATTER CHART ───────────────── -->
+<div id="a-closer-look" class="section level2 report-section fade-in">
+<h2>A Closer Look</h2>
+<p>Write one paragraph before the chart that tells the reader what to
+look for. Set up the expectation first, then let the chart confirm or
+complicate it. Draw from your Test 3 Chart 2 interpretation.</p>
+<div class="chart-wrap">
+<p class="chart-caption">
+Chart 1: replace with a short description of what the chart shows.
+Include axis names and units.
+</p>
+</div>
+<p>Write one or two sentences after the chart connecting what the reader
+just saw to the broader argument.</p>
+</div>
+<!-- ── SECTION 4: RIDGE CHART ─────────────────── -->
+<div id="across-groups" class="section level2 report-section fade-in">
+<h2>Across Groups</h2>
+<p>Write one paragraph before the chart. Which grouping variable did you
+choose, and what did you expect to see? Draw from your Test 4 Section 3
+justification.</p>
+<div class="chart-wrap">
+<p class="chart-caption">
+Chart 2: replace with a short description. Name the grouping variable
+and the continuous variable on the x-axis.
+</p>
+</div>
+<p>Write two or three sentences interpreting the chart. Which groups
+stand out? What does this reveal that the scatter chart did not?</p>
+</div>
+<!-- ── CONCLUSION ──────────────────────────────── -->
+<div id="what-this-means" class="section level2 report-section fade-in">
+<h2>What This Means</h2>
+<p>Write two or three paragraphs closing the piece. Return to the
+headline claim and show how the two charts together support it. What
+would you want a decision-maker to take away? What question does the
+data leave unanswered?</p>
+</div>
+<!-- ── FOOTER ──────────────────────────────────── -->
+<footer class="report-footer">
+<p>
+Published via GitHub Pages · MBAA 531 Data Analytics · Vancouver Island
+University
+</p>
+<p>
+Source: <a href="https://github.com/yourusername/mbaa531-report">
+github.com/yourusername/mbaa531-report </a>
+</p>
+</footer>
+</div>
+<!-- end .report-wrap -->
+
+
+<!-- saved from url=(0052)https://steez.ca/static/downloads/report_scroll.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><script>// Fade each .fade-in element into view as the
+// reader scrolls to it. Uses the browser's native
+// IntersectionObserver API -- no libraries needed.
+window.addEventListener('DOMContentLoaded', function () {
+  var targets = document.querySelectorAll('.fade-in');
+  if (!targets.length) return;
+
+  var observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  targets.forEach(function (el) {
+    observer.observe(el);
+  });
+});
+</script>
+</head><body data-new-gr-c-s-check-loaded="14.1299.0" data-gr-ext-installed></body><grammarly-desktop-integration data-grammarly-shadow-root="true" style="visibility: visible !important;"><template shadowrootmode="open"><style>
+div.grammarly-desktop-integration {
+position: absolute;
+width: 1px;
+height: 1px;
+padding: 0;
+margin: -1px;
+overflow: hidden;
+clip: rect(0, 0, 0, 0);
+white-space: nowrap;
+border: 0;
+-moz-user-select: none;
+-webkit-user-select: none;
+-ms-user-select:none;
+user-select:none;
+}
+div.grammarly-desktop-integration:before {
+content: attr(data-content);
+}
+</style><div aria-label="grammarly-integration" role="group" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
+
+
+<!-- code folding -->
+
+
+
+</body>
+</html>
